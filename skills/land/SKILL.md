@@ -162,7 +162,7 @@ you are checking; pin the one you fetched from land.
 | `policy` | The branch changes the owner's tests or test config. | Revert those edits; the tests belong to the repo's owner. If a test is genuinely wrong, stop and ask the user (the owner can allow it with `land add --allow-test-edits`). |
 | `dependencies` | The new dependencies would not install (`detail` is the install's own output). | Fix the dependency files, or add the system tool to `.land/setup.sh`, commit, merge again. |
 | `env` / `timeout` / `oom` | The run itself failed, not your code. These are never cached. | Run the same command again. If it repeats, tell the user. |
-| `no_plan` | The account has no plan yet and nothing was sent. Both plans start with a 1-day free trial once the user adds a card. | Tell the user the `say_to_user` text and give them the `pay` or `plans` link, then stop. Don't merge around land. |
+| `no_plan` / `trial_ended` | The account has no plan (or its free first day is over) and nothing was sent. | Tell the user the `say_to_user` text and give them the `pay` or `plans` link, then stop. Don't merge around land. |
 | `dirty` | A branch has uncommitted work (often a subagent's worktree). | Commit it, then merge again, so stale work never lands as green. |
 
 Exit `4` is not a refusal: land could not check this run. Run the same command again; if it repeats, tell the user.
